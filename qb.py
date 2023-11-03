@@ -1,6 +1,10 @@
 from player import Player
 
 
+INFINITY = float('inf')
+NEG_INFINITY = float('-inf')
+
+
 class QB(Player):
     all_qbs = []
 
@@ -46,23 +50,21 @@ class QB(Player):
         QB.all_qbs.append(self)
 
     def get_highest_single_game_comp_pct(self):
-        highest = float('-inf')
+        highest = NEG_INFINITY
         for game in self.games_list:
             attempts = game["Attempts"]
             completions = game["Completions"]
             comp_pct = completions / attempts
-            if comp_pct > highest:
-                highest = comp_pct
+            highest = max(highest, comp_pct)
         return highest
 
     def get_lowest_single_game_ypa(self):
-        lowest = float('inf')
+        lowest = INFINITY
         for game in self.games_list:
             attempts = game["Attempts"]
             yards = game["Yards"]
             ypa = yards / attempts
-            if ypa < lowest:
-                lowest = ypa
+            lowest = min(lowest, ypa)
         return lowest
 
     def get_passer_ratings(self):
@@ -82,7 +84,7 @@ class QB(Player):
         return passer_ratings_dict
 
     def get_highest_passer_rating(self):
-        highest = float('-inf')
+        highest = NEG_INFINITY
         best_week = None
         for game, rating in self.passer_ratings.items():
             if rating > highest:
@@ -91,7 +93,7 @@ class QB(Player):
         return best_week, highest
 
     def get_lowest_passer_rating(self):
-        lowest = float('inf')
+        lowest = INFINITY
         worst_week = None
         for game, rating in self.passer_ratings.items():
             if rating < lowest:
@@ -142,7 +144,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.highest_single_game_comp_pct > highest:
@@ -162,7 +164,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        lowest = float('inf')
+        lowest = INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.lowest_single_game_ypa < lowest:
@@ -182,7 +184,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        least = float('inf')
+        least = INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.total_passing_yards < least:
@@ -202,7 +204,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.total_touchdowns > highest:
@@ -253,7 +255,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.highest_single_game_passer_rating > highest:
@@ -273,7 +275,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        lowest = float('inf')
+        lowest = INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.lowest_single_game_passer_rating < lowest:
@@ -293,7 +295,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.season_passer_rating > highest:
@@ -313,7 +315,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.passer_rating_first_3 > highest:
@@ -335,7 +337,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = float('-inf')
+        highest = NEG_INFINITY
         player = None
         for qb_obj in qb_list:
             if qb_obj.passer_rating_exclude_best_worst > highest:
