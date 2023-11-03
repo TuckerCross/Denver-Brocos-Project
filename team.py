@@ -9,6 +9,10 @@ class Team:
     def __init__(self, name):
         self.name = name
         self.players = {}
+        self.recognized_positions = {
+            "QB": QB,
+            "RB": RB
+        }
         Team.all_teams.append(self)
 
     def instantiate_from_json_file(self, json_file: str):
@@ -19,11 +23,11 @@ class Team:
                 games_list = player_dict["Games"]
                 player_position = player_dict["Position"]
 
-                if player_position == "QB":
-                    if self.players.get("QB") is None:
-                        self.players["QB"] = []
-                    self.players["QB"].append(QB(player_name, games_list))
-                elif player_position == "RB":
-                    if self.players.get("RB") is None:
-                        self.players["RB"] = []
-                    self.players["RB"].append(RB(player_name, games_list))
+                self.add_player(player_position, player_name, games_list)
+
+    def add_player(self, position: str, player_name: str, games_list: list):
+        pos_class = self.recognized_positions[position]
+        if self.players.get(position) is None:
+            self.players[position] = []
+        new_player = pos_class(player_name, games_list)
+        self.players[position].append(new_player)

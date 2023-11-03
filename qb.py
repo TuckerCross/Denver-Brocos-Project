@@ -46,7 +46,7 @@ class QB(Player):
         QB.all_qbs.append(self)
 
     def get_highest_single_game_comp_pct(self):
-        highest = 0.0
+        highest = float('-inf')
         for game in self.games_list:
             attempts = game["Attempts"]
             completions = game["Completions"]
@@ -82,7 +82,7 @@ class QB(Player):
         return passer_ratings_dict
 
     def get_highest_passer_rating(self):
-        highest = 0
+        highest = float('-inf')
         best_week = None
         for game, rating in self.passer_ratings.items():
             if rating > highest:
@@ -142,7 +142,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.highest_single_game_comp_pct > highest:
@@ -202,7 +202,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.total_touchdowns > highest:
@@ -253,7 +253,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.highest_single_game_passer_rating > highest:
@@ -293,7 +293,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.season_passer_rating > highest:
@@ -313,7 +313,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.passer_rating_first_3 > highest:
@@ -335,7 +335,7 @@ class QB(Player):
         if qb_list is None:
             qb_list = QB.all_qbs
 
-        highest = 0
+        highest = float('-inf')
         player = None
         for qb_obj in qb_list:
             if qb_obj.passer_rating_exclude_best_worst > highest:
