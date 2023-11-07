@@ -132,8 +132,8 @@ class QB(Player):
                                            total_intercepts)
         return round(passer_rating, 1)
 
-    @staticmethod
-    def get_highest_single_game_comp_pct_all_qbs(qb_list=None):
+    @classmethod
+    def get_highest_single_game_comp_pct_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the highest
         single game completion percentage.
@@ -142,7 +142,7 @@ class QB(Player):
                  the player that has the highest single game completion percentage.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None
@@ -152,8 +152,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, round(highest * 100, 3)
 
-    @staticmethod
-    def get_lowest_single_game_ypa_all_qbs(qb_list=None):
+    @classmethod
+    def get_lowest_single_game_ypa_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the lowest
         single game yards per attempt.
@@ -162,7 +162,7 @@ class QB(Player):
                  the player that has the lowest single game yards per attempt.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         lowest = INFINITY
         player = None
@@ -172,8 +172,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, round(lowest, 3)
 
-    @staticmethod
-    def get_least_season_passing_yards_all_qbs(qb_list=None):
+    @classmethod
+    def get_least_season_passing_yards_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the least
         season passing yards.
@@ -182,7 +182,7 @@ class QB(Player):
                  that has the least season passing yards.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         least = INFINITY
         player = None
@@ -192,8 +192,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, least
 
-    @staticmethod
-    def get_most_touchdowns_for_season_all_qbs(qb_list=None):
+    @classmethod
+    def get_most_touchdowns_for_season_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the most
         touchdowns for the season.
@@ -202,7 +202,7 @@ class QB(Player):
                  has the most touchdowns for the season.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None
@@ -212,8 +212,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, highest
 
-    @staticmethod
-    def get_season_comp_pct_list_descending_all_qbs(qb_list=None):
+    @classmethod
+    def get_season_comp_pct_list_descending_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to display the players in
         descending order based on their season completion percentage.
@@ -222,7 +222,7 @@ class QB(Player):
                  descending order based on their season completion percentage.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
         qb_name_and_comp_pct_list = []
         final_list = []
 
@@ -243,8 +243,8 @@ class QB(Player):
         # Join the final list into a string that separates each qb name by a comma.
         return ",".join(final_list)
 
-    @staticmethod
-    def get_highest_single_game_passer_rating_all_qbs(qb_list=None):
+    @classmethod
+    def get_highest_single_game_passer_rating_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the highest
         single game passer rating.
@@ -253,7 +253,7 @@ class QB(Player):
                  that has the highest single game passer rating.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None
@@ -263,8 +263,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, highest
 
-    @staticmethod
-    def get_lowest_single_game_passer_rating_all_qbs(qb_list=None):
+    @classmethod
+    def get_lowest_single_game_passer_rating_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the lowest
         single game passer rating.
@@ -273,7 +273,7 @@ class QB(Player):
                  that has the lowest single game passer rating.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         lowest = INFINITY
         player = None
@@ -283,8 +283,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, lowest
 
-    @staticmethod
-    def get_highest_season_passer_rating_all_qbs(qb_list=None):
+    @classmethod
+    def get_highest_season_passer_rating_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the highest
         season passer rating.
@@ -293,7 +293,7 @@ class QB(Player):
                  that has the highest season passer rating.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None
@@ -303,8 +303,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, highest
 
-    @staticmethod
-    def get_highest_passer_rating_first_3_all_qbs(qb_list=None):
+    @classmethod
+    def get_highest_passer_rating_first_3_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the highest
         passer rating over the first three games.
@@ -313,7 +313,7 @@ class QB(Player):
                  that has the highest passer rating over the first three games.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None
@@ -323,8 +323,8 @@ class QB(Player):
                 player = qb_obj.name
         return player, highest
 
-    @staticmethod
-    def get_highest_passer_rating_exclude_best_worst_all_qbs(qb_list=None):
+    @classmethod
+    def get_highest_passer_rating_exclude_best_worst_all_qbs(cls, qb_list=None):
         """
         Iterates the list of QB objects to find the QB with the highest
         passer rating after excluding the best and worst passer rating games of
@@ -335,7 +335,7 @@ class QB(Player):
                  rating games of the season.
         """
         if qb_list is None:
-            qb_list = QB.all_qbs
+            qb_list = cls.all_qbs
 
         highest = NEG_INFINITY
         player = None

@@ -4,9 +4,6 @@ class Player:
     all_players = []
 
     def __init__(self, name: str, games_list: list):
-        assert len(games_list) > 0, (
-            f"Empty game list provided for player: '{name}'")
-
         self.__name = name
         self.games_list = games_list
 
@@ -18,7 +15,17 @@ class Player:
 
     @name.setter
     def name(self, value):
-        raise Exception(f"Aborting: attempted to change {self.name}'s name to {value}")
+        raise ValueError(f"Aborting: attempted to change {self.name}'s name to {value}")
+
+    @property
+    def games_list(self):
+        return self.__games_list
+
+    @games_list.setter
+    def games_list(self, games_list):
+        if len(games_list) < 1:
+            raise ValueError(f"Empty game list provided for player: {self.name}")
+        self.__games_list = games_list
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', {self.games_list})"
